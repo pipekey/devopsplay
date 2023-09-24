@@ -3,6 +3,7 @@
 - name: Upgrade nodes
   hosts: nodes
   become: true
+  gather_facts: false
   tasks:
     - name: Update and upgrade apt packages
       ansible.builtin.apt:
