@@ -1,0 +1,50 @@
+---
+
+- name: Initial setup
+  hosts: nodes
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Ensure UFW is installed
+      ansible.builtin.apt:
+        name: "ufw"
+        state: present
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Allow SSH
+      community.general.ufw:
+        rule: allow
+        name: OpenSSH
+
+    - name: Enable UFW
+      community.general.ufw:
+        state: enabled
+
+    - name: Install packages
+      ansible.builtin.apt:
+        name:
+          - unattended-upgrades
+          - bash-completion
+        state: present
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Copy custom sshd config
+      ansible.builtin.copy:
+        src: "files/00-user.conf"
+        dest: "/etc/ssh/sshd_config.d/"
+        owner: root
+        group: root
+        mode: "0644"
+      notify:
+        - Restart sshd
+
+  handlers:
+    - name: Restart sshd
+      ansible.builtin.service:
+        name: sshd
+        state: restarted
+
+...
