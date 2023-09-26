@@ -11,4 +11,20 @@
         cache_valid_time: 3600
         upgrade: safe
 
+    - name: Check reboot status
+      ansible.builtin.stat:
+        path: /run/reboot-required
+        get_checksum: false
+      register: reboot
+      changed_when: reboot.stat.exists
+      notify: Perform reboot
+
+    - name: Print reboot stat
+      ansible.builtin.debug:
+        var: reboot.stat.exists
+
+  handlers:
+    - name: Perform reboot
+      ansible.builtin.debug:
+        msg: "Perform reboot"
 ...
