@@ -6,9 +6,9 @@
   gather_facts: false
 
   tasks:
-    - name: Makde sudo without password for existing ansible user
+    - name: Make sudo without password for existing ansible user
       ansible.builtin.copy:
-        dest: "/etc/sudoers.d/80-ansible-sudo-user"
+        dest: "{{ sudoers_file }}"
         content: "ansible ALL=(ALL) NOPASSWD:ALL"
         mode: "0440"
 
