@@ -43,6 +43,7 @@
         name:
           - unattended-upgrades
           - bash-completion
+          - snapd
         state: present
         update_cache: true
         cache_valid_time: 3600
