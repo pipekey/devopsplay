@@ -6,11 +6,21 @@
   gather_facts: false
 
   tasks:
-    - name: Make sudo without password for existing ansible user
-      ansible.builtin.copy:
-        dest: "{{ sudoers_file }}"
-        content: "ansible ALL=(ALL) NOPASSWD:ALL"
+    - name: Touch custom sudoers file
+      ansible.builtin.file:
+        path: "{{ sudoers_file }}"
+        state: touch
         mode: "0440"
+        modification_time: preserve
+        access_time: preserve
+
+    - name: Make sudo without password for ansible user
+      ansible.builtin.lineinfile:
+        path: "{{ sudoers_file }}"
+        state: present
+        regexp: "ansible ALL="
+        line: "ansible ALL=(ALL) NOPASSWD:ALL"
+        validate: /usr/sbin/visudo -cf %s
 
     - name: Ensure UFW is installed
       ansible.builtin.apt:
