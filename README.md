@@ -18,7 +18,8 @@ This devops playground is about building infrastructure for cluster nodes and tr
 ## Infrastructure
 
 The infrastructure is built with existing VPS resources, if they will not be sufficient during testing, an scale up is possible.  
-SRV2 will serve as a bridge to the world and a controller for nodes on a private network
+SRV2 will serve as a bridge to the world and a controller for nodes on a private network.
+Ubuntu 22.04 LTS is used on all VPS.
 
 ---
 Infrastructure sketch:
