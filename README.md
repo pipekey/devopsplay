@@ -4,6 +4,8 @@
 
 - [Overview](#overview)
 - [Infrastructure](#infrastructure)
+  - [SRV2, controller & gateway](#srv2-controller--gateway)
+  - [Nodes](#nodes)
 
 ---
 
@@ -34,3 +36,13 @@ SRV2 and each node has been allocated the same resources so far ...
 CPU cores: 2  
 RAM: 1GB  
 Disk space: 30GB  
+
+### SRV2, controller & gateway
+
+SRV2 is configured and administered locally/manually for now. The nodes are administered from here using ansible.  
+[SRV2 configuration procedure](/docs/srv2_config.md)  
+This configuration is sufficient from the security point of view for now, if necessary further configuration will be made on the basis of the results and recommendations of the lynis audit system.
+
+### Nodes
+
+Nodes were created manually with basic configuration, then they are managed using ansible from SRV2.
