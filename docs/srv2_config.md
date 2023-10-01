@@ -74,7 +74,7 @@ adduser [YOUR_USER]
 Add user to sudo group
 
 ```bash
-sudo usermog -aG sudo [YOUR_USER]
+sudo usermod -aG sudo [YOUR_USER]
 ```
 
 Copy ssh key (already generated) from host
