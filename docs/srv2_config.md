@@ -152,13 +152,19 @@ sudo apt install ansible
 
 ---
 
-- Install ansible-lint (recommended)
+- Install ansible linter (recommended)
+
+Install pip - Python package installer  
 
 ```bash
 sudo apt install python3-pip
-pip install --upgrade pip
-pip install ansible-lint
-python3 -m pip install --user argcomplete
+python3 -m pip install --upgrade pip
+```
+
+Install ansible-lint
+
+```bash
+python3 -m pip install --user ansible-lint
 ```
 
 ---
