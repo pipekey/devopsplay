@@ -121,7 +121,7 @@ sudo systemctl restart sshd
 ---
 
 - SSH hardening  
-[https://www.sshaudit.com/hardening_guides.html#ubuntu_22_04_lts]
+[Ubuntu 22.04 LTS SSH hardening](https://www.sshaudit.com/hardening_guides.html#ubuntu_22_04_lts)
 
 ---
 
