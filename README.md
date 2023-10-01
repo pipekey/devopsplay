@@ -6,6 +6,7 @@
 - [Infrastructure](#infrastructure)
   - [SRV2, controller & gateway](#srv2-controller--gateway)
   - [Nodes](#nodes)
+- [Ansible](#ansible)
 
 ---
 
@@ -21,11 +22,9 @@ The infrastructure is built with existing VPS resources, if they will not be suf
 SRV2 will serve as a bridge to the world and a controller for nodes on a private network.
 Ubuntu 22.04 LTS is used on all VPS.
 
----
 Infrastructure sketch:
 ![infrastructure](/docs/images/vpsinfra.jpg)
 
----
 
 **Allocable resources:**  
 CPU cores: 16 shared  
@@ -38,12 +37,44 @@ CPU cores: 2
 RAM: 1GB  
 Disk space: 30GB  
 
+---
+
 ### SRV2, controller & gateway
 
 SRV2 is configured and administered locally/manually for now. The nodes are administered from here using ansible.  
+
 [SRV2 configuration procedure](/docs/srv2_config.md)  
+
 This configuration is sufficient from the security point of view for now, if necessary further configuration will be made on the basis of the results and recommendations of the lynis audit system.
+
+---
 
 ### Nodes
 
-Nodes were created manually with basic configuration, then they are managed using ansible from SRV2.
+Nodes are created manually with basic configuration, then they are managed using ansible from SRV2.  
+
+[Nodes configuration procedure](/docs/nodes_config.md)  
+
+Now is ansible used for further configuration.
+
+## Ansible
+
+Ansible related files are located in the directory [Ansible](/ansible).
+
+- Run initial configuration  
+
+```bash
+ansible-playbook --ask-become-pass initial.yaml
+```
+
+- Upgrade system
+
+```bash
+ansible-playbook upgrade.yaml
+```
+
+- Create sudo user (optional)
+
+```bash
+ansible-playbook user_sudo.yaml
+```
