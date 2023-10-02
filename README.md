@@ -25,7 +25,6 @@ Ubuntu 22.04 LTS is used on all VPS.
 Infrastructure sketch:
 ![infrastructure](/docs/images/vpsinfra.jpg)
 
-
 **Allocable resources:**  
 CPU cores: 16 shared  
 RAM: 8GB  
@@ -41,7 +40,7 @@ Disk space: 30GB
 
 ### SRV2, controller & gateway
 
-SRV2 is configured and administered locally/manually for now. The nodes are administered from here using ansible.  
+SRV2 is configured and administered locally/manually for now. The nodes are administered from srv2 using ansible.  
 
 [SRV2 configuration procedure](/docs/srv2_config.md)  
 
@@ -62,18 +61,21 @@ Now is ansible used for further configuration.
 Ansible related files are located in the directory [Ansible](/ansible).
 
 - Run initial configuration  
+playbook [initial.yaml](ansible/initial.yaml)
 
 ```bash
 ansible-playbook --ask-become-pass initial.yaml
 ```
 
-- Upgrade system
+- Upgrade system  
+playbook [upgrade.yaml](ansible/upgrade.yaml)
 
 ```bash
 ansible-playbook upgrade.yaml
 ```
 
-- Create sudo user (optional)
+- Create sudo user (optional)  
+playbook [user_sudo.yaml](ansible/user_sudo.yaml)
 
 ```bash
 ansible-playbook user_sudo.yaml
